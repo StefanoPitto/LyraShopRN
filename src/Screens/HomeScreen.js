@@ -6,6 +6,7 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
+
 import { Text } from "../Components/Text";
 import { useProducts } from "../Hooks/useProducts";
 import { LinearGradient } from "expo-linear-gradient";
@@ -39,7 +40,6 @@ export const HomeScreen = () => {
               contentContainerStyle={style.list}
               data={products}
               style={style.list}
-              numColumns="2"
               renderItem={({ item }) => <ProductItem item={item} />}
               showsVerticalScrollIndicator={false}
             />
@@ -52,7 +52,6 @@ export const HomeScreen = () => {
 
 const style = StyleSheet.create({
   list: {
-    marginLeft: 12,
     marginBottom: 100,
   },
 });
