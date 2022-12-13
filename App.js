@@ -1,11 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import FavoriteContextProvider from "./src/Context/FavoritesContextProvider";
 import { Navigator } from "./src/Navigator/Navigator";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Navigator />
-    </NavigationContainer>
+    <FavoriteContextProvider>
+      <NavigationContainer>
+        <Navigator />
+      </NavigationContainer>
+    </FavoriteContextProvider>
   );
 }

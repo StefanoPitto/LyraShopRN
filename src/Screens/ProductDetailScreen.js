@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -12,23 +12,38 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "../Components/Text";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import FavoriteContext from "../Context/FavoriteContext";
+
+const sizes = [
+  "7",
+  "7.5",
+  "8",
+  "8.5",
+  "9",
+  "9.5",
+  "10",
+  "10.5",
+  "11",
+  "11.5",
+  "12",
+];
 
 export const ProductDetailScreen = ({ route, navigation }) => {
-  const { imageURL, productName, productPrice } = route.params;
+  const { favorites, addToFavorites, removeFromFavorites, isInFavorites } =
+    useContext(FavoriteContext);
+  const { id, imageURL, productName, productPrice } = route.params;
   const [selectedValue, setSelectedValue] = useState();
-  const sizes = [
-    "7",
-    "7.5",
-    "8",
-    "8.5",
-    "9",
-    "9.5",
-    "10",
-    "10.5",
-    "11",
-    "11.5",
-    "12",
-  ];
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    handleFavorite();
+  }, [addToFavorites, removeFromFavorites, favorites]);
+
+  const handleFavorite = () => {
+    const value = isInFavorites({ id, imageURL, productName, productPrice });
+    setIsFavorite(value);
+  };
+
   return (
     <LinearGradient
       // Button Linear Gradient
@@ -47,11 +62,27 @@ export const ProductDetailScreen = ({ route, navigation }) => {
               <AntDesign name="arrowleft" size={36} color="white" />
             </Pressable>
             <Pressable
-              onPress={() => console.log("Added to favorites.")}
+              onPress={() => {
+                isFavorite
+                  ? removeFromFavorites({
+                      id,
+                      imageURL,
+                      productName,
+                      productPrice,
+                    })
+                  : addToFavorites({ id, imageURL, productName, productPrice });
+              }}
               style={styles.favoriteBtn}
             >
-              <MaterialIcons name="favorite-outline" size={24} color="black" />
-              {/* <MaterialIcons name="favorite" size={30} color="black" /> */}
+              {isFavorite ? (
+                <MaterialIcons name="favorite" size={24} color="#E58C8A" />
+              ) : (
+                <MaterialIcons
+                  name="favorite-outline"
+                  size={24}
+                  color="black"
+                />
+              )}
             </Pressable>
           </View>
           <View>
