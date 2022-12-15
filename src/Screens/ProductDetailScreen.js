@@ -16,7 +16,7 @@ import FavoriteContext from "../Context/FavoriteContext/FavoriteContext";
 import Toast from "react-native-toast-message";
 import CartContext from "../Context/CartContext/CartContext";
 
-const sizes = [
+const shoesSizes = [
   "7",
   "7.5",
   "8",
@@ -30,14 +30,17 @@ const sizes = [
   "12",
 ];
 
+const otherSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 export const ProductDetailScreen = ({ route, navigation }) => {
   const { favorites, addToFavorites, removeFromFavorites, isInFavorites } =
     useContext(FavoriteContext);
   const { addToCart, removeFromCart, isInCart } = useContext(CartContext);
-  const { id, imageURL, productName, productPrice } = route.params;
+  const { id, imageURL, productName, productPrice, productType } = route.params;
   const [selectedValue, setSelectedValue] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
   const [isInTheCart, setIsInTheCart] = useState(false);
+
+  const sizes = productType === "shoes" ? shoesSizes : otherSizes;
 
   useEffect(() => {}, [addToCart, removeFromCart]);
 

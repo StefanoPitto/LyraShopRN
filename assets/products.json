@@ -4,67 +4,99 @@
       "id": 1,
       "productName": "Jordan 1",
       "imageURL": "https://cdn.shopify.com/s/files/1/0575/1560/6175/products/air-jordan-1-mid-beige-white-red-1-1000.png?v=1652833639",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 2,
       "productName": "Jordan 1",
       "imageURL": "https://static.nike.com/a/images/t_default/4aba5b61-ed0e-47eb-aa36-2f59c3236087/calzado-grandes-air-jordan-1-mid-se-tq5tn3.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 3,
       "productName": "Jordan 1",
       "imageURL": "https://cdn.shopify.com/s/files/1/0388/8847/2707/products/flowerkickzAir_Jordan_1_Mid_Light_Mulberry-DC7267-500-0_2000x.png?v=1652698987",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 4,
       "productName": "Jordan 1",
       "imageURL": "https://www.backseries.com/wp-content/uploads/2021/08/Nike-Air-Jordan-1-High-Pollen-555088_701_A_PREM-800x800.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 5,
       "productName": "Jordan 1",
       "imageURL": "https://static.nike.com/a/images/t_default/18684354-59f1-4ec0-ac7d-874e62063634/air-jordan-1-mid-se-shoes-hHltxp.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 6,
       "productName": "Jordan 1",
       "imageURL": "https://static.nike.com/a/images/t_default/585f399c-2ae5-4e12-9a4e-df531c0de400/calzado-air-jordan-1-retro-high-og-llwS2v.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 7,
       "productName": "Jordan 1",
       "imageURL": "https://cdn.shopify.com/s/files/1/0086/0946/4375/products/555088-037-PHSLH000-2000_400x.png?v=1661198717",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 8,
       "productName": "Jordan 1",
       "imageURL": "https://static.nike.com/a/images/t_default/7cf13a77-290d-40f3-a58e-7174966c504d/air-jordan-1-mid-se-big-kids-shoes-7rQxbT.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 9,
       "productName": "Air Force 1 High",
       "imageURL": "https://static.nike.com/a/images/t_default/0d82a8f5-561e-4f12-bac9-c4102e75b8c7/custom-nike-air-force-1-high-by-you-shoes.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 10,
       "productName": "Air Force 1 Mid",
       "imageURL": "https://static.nike.com/a/images/t_default/60618c33-70df-45c4-98eb-4870f2625b6c/custom-nike-air-force-1-mid-by-you-shoes.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
     },
     {
       "id": 11,
       "productName": "Nike Dunk High",
       "imageURL": "https://static.nike.com/a/images/t_default/e3bdb728-8ab2-4812-80c0-a1484c5966bc/custom-nike-dunk-high-by-you-shoes.png",
-      "productPrice": 500
+      "productPrice": 500,
+      "productType": "shoes"
+    },
+    {
+      "id": 12,
+      "productImage": "https://i.imgur.com/58YHBHp.png",
+      "productName": "Campera Nike",
+      "productPrice": 200,
+      "productType": "tops"
+    },
+    {
+      "id": 13,
+      "productImage": "https://i.imgur.com/O1nSRXF.png",
+      "productName": "Campera Nike",
+      "productPrice": 180,
+      "productType": "tops"
+    },
+    {
+      "id": 14,
+      "productImage": "https://i.imgur.com/6NDgCq9.png",
+      "productName": "Campera Nike",
+      "productPrice": 180,
+      "productType": "tops"
     }
   ]
 }
