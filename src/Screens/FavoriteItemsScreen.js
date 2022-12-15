@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { ProductItem } from "../Components/ProductItem";
 import { Text } from "../Components/Text";
-import FavoriteContext from "../Context/FavoriteContext";
+import FavoriteContext from "../Context/FavoriteContext/FavoriteContext";
 import { LinearGradient } from "expo-linear-gradient";
 export const FavoriteItemsScreen = () => {
   const { favorites, loading } = useContext(FavoriteContext);

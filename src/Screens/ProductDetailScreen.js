@@ -12,7 +12,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "../Components/Text";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import FavoriteContext from "../Context/FavoriteContext";
+import FavoriteContext from "../Context/FavoriteContext/FavoriteContext";
+import Toast from "react-native-toast-message";
+import CartContext from "../Context/CartContext/CartContext";
 
 const sizes = [
   "7",
@@ -31,19 +33,55 @@ const sizes = [
 export const ProductDetailScreen = ({ route, navigation }) => {
   const { favorites, addToFavorites, removeFromFavorites, isInFavorites } =
     useContext(FavoriteContext);
+  const { addToCart, removeFromCart, isInCart } = useContext(CartContext);
   const { id, imageURL, productName, productPrice } = route.params;
   const [selectedValue, setSelectedValue] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isInTheCart, setIsInTheCart] = useState(false);
+
+  useEffect(() => {}, [addToCart, removeFromCart]);
 
   useEffect(() => {
     handleFavorite();
   }, [addToFavorites, removeFromFavorites, favorites]);
 
   const handleFavorite = () => {
-    const value = isInFavorites({ id, imageURL, productName, productPrice });
+    const value = isInFavorites(id);
     setIsFavorite(value);
   };
 
+  const handleIsInCart = () => {
+    const value = isInCart(id);
+  };
+
+  const showSizeToast = () => {
+    Toast.show({
+      type: "error",
+      text1: "Something it's wrong!",
+      text2: "Please choose your size before adding to cart.",
+    });
+  };
+
+  const showAddToCartToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "Yay!",
+      text2: "Product was added to cart.",
+    });
+  };
+
+  const handleAddBtn = () => {
+    if (!selectedValue) {
+      showSizeToast();
+      return;
+    }
+    showAddToCartToast();
+    addToCart({ id, imageURL, productName, productPrice, size: selectedValue });
+  };
+
+  const handleRemoveBtn = () => {
+    removeFromCart({ id, productName, productPrice, imageURL });
+  };
   return (
     <LinearGradient
       // Button Linear Gradient
@@ -51,6 +89,9 @@ export const ProductDetailScreen = ({ route, navigation }) => {
       style={{ flex: 1 }}
     >
       <SafeAreaView>
+        <View style={{ display: "flex", margin: 0, zIndex: 20 }}>
+          <Toast />
+        </View>
         <View style={styles.mainContainer}>
           <View style={styles.iconsContainer}>
             <Pressable
@@ -123,9 +164,21 @@ export const ProductDetailScreen = ({ route, navigation }) => {
               }}
             />
           </View>
-          <TouchableOpacity style={styles.addToCartBtn}>
-            <Text style={styles.btnText}>ADD TO CART</Text>
-          </TouchableOpacity>
+          {isInTheCart ? (
+            <TouchableOpacity
+              style={styles.addToCartBtn}
+              onPress={handleRemoveBtn}
+            >
+              <Text style={styles.btnText}>Remove From Cart</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.addToCartBtn}
+              onPress={handleAddBtn}
+            >
+              <Text style={styles.btnText}>ADD TO CART</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </SafeAreaView>
     </LinearGradient>

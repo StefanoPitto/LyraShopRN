@@ -31,6 +31,7 @@ const FavoriteContextProvider = ({ children }) => {
     } catch (error) {
       // Error saving data
     }
+    console.log(favorites);
   };
 
   const removeFromFavorites = async (item) => {
@@ -44,7 +45,7 @@ const FavoriteContextProvider = ({ children }) => {
   };
 
   const isInFavorites = (item) => {
-    let array = favorites.filter((element) => element.id === item.id);
+    let array = favorites.filter((element) => element.id === item);
     return array.length > 0;
   };
 

@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  View,
-  SafeAreaView,
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-} from "react-native";
+import { View, SafeAreaView, ActivityIndicator } from "react-native";
 
 import { Text } from "../Components/Text";
 import { useProducts } from "../Hooks/useProducts";
 import { LinearGradient } from "expo-linear-gradient";
-import { ProductItem } from "../Components/ProductItem";
+import { HorizontalSlider } from "../Components/HorizontalSlider";
+
 export const HomeScreen = () => {
   const { loading, products } = useProducts();
 
@@ -36,22 +31,10 @@ export const HomeScreen = () => {
           {loading ? (
             <ActivityIndicator />
           ) : (
-            <FlatList
-              contentContainerStyle={style.list}
-              data={products}
-              style={style.list}
-              renderItem={({ item }) => <ProductItem item={item} />}
-              showsVerticalScrollIndicator={false}
-            />
+            <HorizontalSlider products={products} title="Shoes" />
           )}
         </View>
       </SafeAreaView>
     </LinearGradient>
   );
 };
-
-const style = StyleSheet.create({
-  list: {
-    marginBottom: 100,
-  },
-});
