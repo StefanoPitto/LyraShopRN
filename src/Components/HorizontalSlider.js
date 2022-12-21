@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { SliderProductItem } from "./SliderProductItem";
 import { Text } from "./Text";
+import uuid from "react-native-uuid";
 export const HorizontalSlider = ({ products, title }) => {
   return (
     <>
@@ -11,7 +12,10 @@ export const HorizontalSlider = ({ products, title }) => {
           style={styles.list}
           horizontal
           data={products}
-          renderItem={({ item }) => <SliderProductItem item={item} />}
+          keyExtractor={() => uuid.v4()}
+          renderItem={({ item }) => (
+            <SliderProductItem item={item} key={uuid.v4()} />
+          )}
           showsHorizontalScrollIndicator={false}
         />
       )}

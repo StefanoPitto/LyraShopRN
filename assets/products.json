@@ -79,22 +79,43 @@
     },
     {
       "id": 12,
-      "productImage": "https://i.imgur.com/58YHBHp.png",
-      "productName": "Campera Nike",
+      "imageURL": "https://i.imgur.com/OpBXDOR.png",
+      "productName": "Nike Jacket",
       "productPrice": 200,
       "productType": "tops"
     },
     {
       "id": 13,
-      "productImage": "https://i.imgur.com/O1nSRXF.png",
-      "productName": "Campera Nike",
+      "imageURL": "https://i.imgur.com/J2hcp0U.png",
+      "productName": "Nike Jacket",
       "productPrice": 180,
       "productType": "tops"
     },
     {
       "id": 14,
-      "productImage": "https://i.imgur.com/6NDgCq9.png",
-      "productName": "Campera Nike",
+      "imageURL": "https://i.imgur.com/iYksCxD.png",
+      "productName": "Nike Jacket",
+      "productPrice": 180,
+      "productType": "tops"
+    },
+    {
+      "id": 15,
+      "imageURL": "https://i.imgur.com/WpiKeSo.png",
+      "productName": "Pants",
+      "productPrice": 180,
+      "productType": "pants"
+    },
+    {
+      "id": 16,
+      "imageURL": "https://i.imgur.com/QQq0pwK.png",
+      "productName": "T-Shirt",
+      "productPrice": 180,
+      "productType": "tops"
+    },
+    {
+      "id": 17,
+      "imageURL": "https://i.imgur.com/8VCQyL0.png",
+      "productName": "T-Shirt",
       "productPrice": 180,
       "productType": "tops"
     }

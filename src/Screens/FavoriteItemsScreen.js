@@ -31,7 +31,7 @@ export const FavoriteItemsScreen = () => {
               renderItem={({ item }) => <ProductItem item={item} />}
             />
           ) : (
-            <Text style={style.alternativeText}>No Favorite items...</Text>
+            <Text style={style.alternativeText}>No favorite items...</Text>
           )}
         </View>
       </SafeAreaView>

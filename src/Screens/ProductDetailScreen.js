@@ -38,12 +38,14 @@ export const ProductDetailScreen = ({ route, navigation }) => {
   const { id, imageURL, productName, productPrice, productType } = route.params;
   const [selectedValue, setSelectedValue] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isInTheCart, setIsInTheCart] = useState(false);
+  const [sizes, setSizes] = useState();
+  useEffect(() => {
+    handleSizes();
+  }, [productType]);
 
-  const sizes = productType === "shoes" ? shoesSizes : otherSizes;
-
-  useEffect(() => {}, [addToCart, removeFromCart]);
-
+  const handleSizes = () => {
+    productType === "shoes" ? setSizes(shoesSizes) : setSizes(otherSizes);
+  };
   useEffect(() => {
     handleFavorite();
   }, [addToFavorites, removeFromFavorites, favorites]);
@@ -138,50 +140,40 @@ export const ProductDetailScreen = ({ route, navigation }) => {
           </View>
           <View style={styles.container}>
             <Text style={styles.sizeHeadline}>Size</Text>
-            <FlatList
-              data={sizes}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item }) => {
-                return (
-                  <Pressable
-                    style={[
-                      styles.sizeBtn,
-                      selectedValue === item ? styles.selectedSizeBtn : "",
-                    ]}
-                    onPress={() => {
-                      setSelectedValue(item);
-                    }}
-                  >
-                    <Text
-                      style={
-                        selectedValue === item
-                          ? styles.selectedSizeBtnText
-                          : styles.sizeBtnText
-                      }
+            {sizes && (
+              <FlatList
+                data={sizes}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item }) => {
+                  return (
+                    <Pressable
+                      style={[
+                        styles.sizeBtn,
+                        selectedValue === item ? styles.selectedSizeBtn : "",
+                      ]}
+                      onPress={() => {
+                        setSelectedValue(item);
+                      }}
                     >
-                      {item}
-                    </Text>
-                  </Pressable>
-                );
-              }}
-            />
+                      <Text
+                        style={
+                          selectedValue === item
+                            ? styles.selectedSizeBtnText
+                            : styles.sizeBtnText
+                        }
+                      >
+                        {item}
+                      </Text>
+                    </Pressable>
+                  );
+                }}
+              />
+            )}
           </View>
-          {isInTheCart ? (
-            <TouchableOpacity
-              style={styles.addToCartBtn}
-              onPress={handleRemoveBtn}
-            >
-              <Text style={styles.btnText}>Remove From Cart</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.addToCartBtn}
-              onPress={handleAddBtn}
-            >
-              <Text style={styles.btnText}>ADD TO CART</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity style={styles.addToCartBtn} onPress={handleAddBtn}>
+            <Text style={styles.btnText}>ADD TO CART</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </LinearGradient>

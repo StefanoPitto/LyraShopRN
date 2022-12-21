@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export const ProductItem = ({ item }) => {
   const navigator = useNavigation();
+
   return (
     <TouchableOpacity
       onPress={() => {

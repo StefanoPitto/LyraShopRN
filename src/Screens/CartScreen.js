@@ -30,7 +30,7 @@ export const CartScreen = () => {
             )}
           />
         ) : (
-          <Text style={styles.alternativeText}>No Items On Cart...</Text>
+          <Text style={styles.alternativeText}>No items on cart...</Text>
         )}
         {cartItems.length > 0 && (
           <View style={styles.costContainer}>
@@ -63,5 +63,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
     marginTop: 200,
+    color: "#ffffff",
   },
 });
