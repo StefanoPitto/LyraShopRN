@@ -8,7 +8,7 @@ export const SliderProductItem = ({ item }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigator.navigate("ProductDetailScreen", item);
+        navigator.push("ProductDetailScreen", item);
       }}
       style={styles.outerContainer}
     >

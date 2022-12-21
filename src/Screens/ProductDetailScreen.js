@@ -35,15 +35,19 @@ export const ProductDetailScreen = ({ route, navigation }) => {
   const { favorites, addToFavorites, removeFromFavorites, isInFavorites } =
     useContext(FavoriteContext);
   const { addToCart, removeFromCart, isInCart } = useContext(CartContext);
-  const { id, imageURL, productName, productPrice, productType } = route.params;
+  const [item, setItem] = useState();
   const [selectedValue, setSelectedValue] = useState();
   const [isFavorite, setIsFavorite] = useState(false);
   const [sizes, setSizes] = useState();
-  useEffect(() => {
-    handleSizes();
-  }, [productType]);
+  const { id, productPrice, productName, productType, imageURL } = route.params;
 
-  const handleSizes = () => {
+  useEffect(() => {
+    handleItem();
+  }, []);
+
+  const handleItem = () => {
+    setItem(id, productPrice, productName, productType, imageURL);
+    if (productType === undefined) return;
     productType === "shoes" ? setSizes(shoesSizes) : setSizes(otherSizes);
   };
   useEffect(() => {
@@ -115,8 +119,15 @@ export const ProductDetailScreen = ({ route, navigation }) => {
                       imageURL,
                       productName,
                       productPrice,
+                      productType,
                     })
-                  : addToFavorites({ id, imageURL, productName, productPrice });
+                  : addToFavorites({
+                      id,
+                      imageURL,
+                      productName,
+                      productPrice,
+                      productType,
+                    });
               }}
               style={styles.favoriteBtn}
             >
@@ -131,46 +142,52 @@ export const ProductDetailScreen = ({ route, navigation }) => {
               )}
             </Pressable>
           </View>
-          <View>
-            <Image style={styles.image} source={{ uri: imageURL }} />
-          </View>
-          <View style={styles.headTextContainer}>
-            <Text style={styles.nameText}>{productName}</Text>
-            <Text style={styles.priceText}>$ {productPrice}</Text>
-          </View>
-          <View style={styles.container}>
-            <Text style={styles.sizeHeadline}>Size</Text>
-            {sizes && (
-              <FlatList
-                data={sizes}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => {
-                  return (
-                    <Pressable
-                      style={[
-                        styles.sizeBtn,
-                        selectedValue === item ? styles.selectedSizeBtn : "",
-                      ]}
-                      onPress={() => {
-                        setSelectedValue(item);
-                      }}
-                    >
-                      <Text
-                        style={
-                          selectedValue === item
-                            ? styles.selectedSizeBtnText
-                            : styles.sizeBtnText
-                        }
-                      >
-                        {item}
-                      </Text>
-                    </Pressable>
-                  );
-                }}
-              />
-            )}
-          </View>
+          {item && (
+            <>
+              <View>
+                <Image style={styles.image} source={{ uri: imageURL }} />
+              </View>
+              <View style={styles.headTextContainer}>
+                <Text style={styles.nameText}>{productName}</Text>
+                <Text style={styles.priceText}>$ {productPrice}</Text>
+              </View>
+              <View style={styles.container}>
+                <Text style={styles.sizeHeadline}>Size</Text>
+                {sizes && (
+                  <FlatList
+                    data={sizes}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({ item }) => {
+                      return (
+                        <Pressable
+                          style={[
+                            styles.sizeBtn,
+                            selectedValue === item
+                              ? styles.selectedSizeBtn
+                              : "",
+                          ]}
+                          onPress={() => {
+                            setSelectedValue(item);
+                          }}
+                        >
+                          <Text
+                            style={
+                              selectedValue === item
+                                ? styles.selectedSizeBtnText
+                                : styles.sizeBtnText
+                            }
+                          >
+                            {item}
+                          </Text>
+                        </Pressable>
+                      );
+                    }}
+                  />
+                )}
+              </View>
+            </>
+          )}
           <TouchableOpacity style={styles.addToCartBtn} onPress={handleAddBtn}>
             <Text style={styles.btnText}>ADD TO CART</Text>
           </TouchableOpacity>

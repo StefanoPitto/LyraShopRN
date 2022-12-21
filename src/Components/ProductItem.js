@@ -1,15 +1,14 @@
 import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "./Text";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, CommonActions } from "@react-navigation/native";
 
 export const ProductItem = ({ item }) => {
-  const navigator = useNavigation();
-
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigator.navigate("ProductDetailScreen", item);
+        navigation.push("ProductDetailScreen", item);
       }}
     >
       <View style={styles.container}>
